@@ -5,7 +5,7 @@
 #
 
 # Set default fork
-FORK="splitti"
+FORK="stopfkuchen"
 
 # Check if FORK environment variable is set
 if [ "$FORK" = "stopfkuchen" ]; then
