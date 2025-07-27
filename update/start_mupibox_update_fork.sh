@@ -105,10 +105,10 @@ OS=$(grep -E '^(VERSION_CODENAME)=' /etc/os-release)  >&3 2>&3
 OS=${OS:17}  >&3 2>&3
 ARCH=$(uname -m) >&3 2>&3	
 
-wget -O /tmp/installation.jpg https://raw.githubusercontent.com/splitti/MuPiBox/main/media/images/installation.jpg >&3 2>&3
+wget -O /tmp/installation.jpg https://raw.githubusercontent.com/${GITHUB_USER}/MuPiBox/main/media/images/installation.jpg >&3 2>&3
 /usr/bin/fbv /tmp/installation.jpg & >&3 2>&3
 
-wget -q -O ${VER_JSON} https://raw.githubusercontent.com/splitti/MuPiBox/main/version.json  >&3 2>&3
+wget -q -O ${VER_JSON} https://raw.githubusercontent.com/${GITHUB_USER}/MuPiBox/main/version.json  >&3 2>&3
 VERSION=$(/usr/bin/jq -r .release.${RELEASE}[-1].version ${VER_JSON})  >&3 2>&3
 MUPIBOX_URL=$(/usr/bin/jq -r .release.${RELEASE}[-1].url ${VER_JSON})  >&3 2>&3
 USER=$(/usr/bin/whoami) >&3 2>&3
@@ -119,7 +119,7 @@ else
 	MUPI_SRC="/home/dietpi/MuPiBox-${VERSION}" >&3 2>&3
 fi
 if [ "$1" = "dev" ]; then
-	VERSION_LONG="DEV $(curl -s "https://api.github.com/repos/splitti/MuPiBox" | jq -r '.pushed_at' | cut -d'T' -f1)"  >&3 2>&3
+	VERSION_LONG="DEV $(curl -s "https://api.github.com/repos/${GITHUB_USER}/MuPiBox" | jq -r '.pushed_at' | cut -d'T' -f1)"  >&3 2>&3
 else
 	VERSION_LONG="${VERSION} ${RELEASE}"
 fi
@@ -474,12 +474,12 @@ echo "==========================================================================
 	# Binaries
 	if [ `getconf LONG_BIT` == 32 ]; then
 		wget -O /usr/bin/jq https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-linux-armhf >&3 2>&3
-		wget -O /usr/bin/librespot https://github.com/splitti/MuPiBox/raw/refs/heads/main/bin/librespot/dev_0.6_20250628/librespot-32bit >&3 2>&3
+		wget -O /usr/bin/librespot https://github.com/${GITHUB_USER}/MuPiBox/raw/refs/heads/main/bin/librespot/dev_0.6_20250628/librespot-32bit >&3 2>&3
 		#mv ${MUPI_SRC}/bin/librespot/dev_0.6_20250305/librespot-32bit /usr/bin/librespot >&3 2>&3
 		mv ${MUPI_SRC}/bin/fbv/fbv /usr/bin/fbv >&3 2>&3
 	else
 		wget -O /usr/bin/jq https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-linux-arm64 >&3 2>&3
-		wget -O /usr/bin/librespot https://github.com/splitti/MuPiBox/raw/refs/heads/main/bin/librespot/dev_0.6_20250628/librespot-64bit >&3 2>&3
+		wget -O /usr/bin/librespot https://github.com/${GITHUB_USER}/MuPiBox/raw/refs/heads/main/bin/librespot/dev_0.6_20250628/librespot-64bit >&3 2>&3
 		#mv ${MUPI_SRC}/bin/librespot/dev_0.6_20250305/librespot-64bit /usr/bin/librespot >&3 2>&3
 		mv ${MUPI_SRC}/bin/fbv/fbv_64 /usr/bin/fbv >&3 2>&3
 	fi
