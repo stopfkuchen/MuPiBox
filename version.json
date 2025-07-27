@@ -1,6 +1,13 @@
 {
 	"version": "3.2.4",
 	"release": {
+		"dev-stopfkuchen": [
+			{
+			"version": "X.X.X",
+			"url": "https://github.com/stopfkuchen/MuPiBox/archive/refs/heads/main.zip",
+			"releaseinfo": "Development Version, install on your own risk! Please create a backup before installation"
+			}
+		],
 		"dev": [
 			{
 			"version": "X.X.X",
